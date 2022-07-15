@@ -17,10 +17,10 @@ function Home() {
       </h1>
       <ul className="items-center justify-center text-center pt-8 p-4">
         <li>
-          <Link to={"/movies"} className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out">Movie List</Link>
+          <Link to={"/movies"} className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out">All Movies</Link>
         </li>
         <li>
-          <Link to={"/movies/new"} className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out">Add New Movie</Link>
+          <Link to={"/movies/new"} className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out">Add Movie</Link>
         </li>
       </ul>
     </div>
@@ -30,6 +30,8 @@ function Home() {
   </div>
   );
 }
+
+
 
 function Application() {
   return (
