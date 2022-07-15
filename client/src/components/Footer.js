@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="w-full p-4 text-lg bottom-0 items-end justify-end">
+    <div className="w-full p-4 text-lg bottom-0 items-end justify-end fixed">
       <a
         className="text-gray-300 text-md font-medium hover:text-white transition-all duration-300 ease-in-out"
         href="https://nakkerud.studio"

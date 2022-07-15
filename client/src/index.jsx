@@ -24,9 +24,7 @@ function Home() {
         </li>
       </ul>
     </div>
-    <div className="bg-gray-900 items-center justify-center text-center">
     <Footer />
-    </div>
   </div>
   );
 }
