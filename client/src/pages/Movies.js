@@ -52,7 +52,7 @@ const Movies = () => {
     return (
       <div className="bg-gray-900 w-full h-screen text-white p-4">
         <h1 className="text-5xl font-bold">Error</h1>{" "}
-        <div className="text-xl bg-yellow-500 text-pink-800 border-pink-600 border-2 p-1 rounded-md mt-2">
+        <div className="text-xl text-yellow-500 bg-pink-800 border-red-500 border-2 p-1 mt-2">
           {error.toString()}
         </div>
       </div>
