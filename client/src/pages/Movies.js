@@ -4,25 +4,123 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import { useLoading } from "../components/UseLoading";
 import { fetchJSON } from "../components/FetchJSON";
+import Modal from "react-modal";
 
 <fetchJSON />;
 
 function Movie({
-  movie: { title, year, plot, genre, poster, metacritic, fullplot },
+  movie: {
+    title,
+    year,
+    plot,
+    genres,
+    poster,
+    metacritic,
+    fullplot,
+    runtime,
+    imdb,
+    directors,
+    languages,
+  },
 }) {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "1240px",
+      height: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      overflow: "hidden",
+      backgroundColor: "#374151",
+      borderRadius: "1rem",
+    },
+  };
+
   return (
     <div className="flex justify-center">
-      <div className="">
+      <div className="flex flex-col">
         <div className="bg-gray-700 w-[540px] p-4 px-32 m-4 rounded-2xl text-center">
-          <h1 className="text-2xl font-bold pb-4">
-            {title} <span className="font-normal">({year})</span>
-          </h1>
-          <img src={poster} alt={title} className="rounded-lg" />
-          <p className="text-md pt-2">{plot}</p>
-          <p className="pt-4 text-sm">
-            Metacritic Score:{" "}
-            <span className="font-bold text-md">{metacritic}</span>
-          </p>
+          <button onClick={openModal}>
+            <h1 className="text-2xl font-bold pb-4">
+              {title} <span className="font-normal">({year})</span>
+            </h1>
+            <img src={poster} alt={title} className="rounded-lg" />
+            <p className="text-md pt-2">{plot}</p>
+            <p className="pt-4 text-sm">
+              Metacritic Score:{" "}
+              <span className="font-bold text-md">{metacritic}</span>
+            </p>
+          </button>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel={"Movie Card Modal"}
+            preventScroll={true}
+          >
+            <div className="bg-gray-700 w-full p-4 px-32  rounded-2xl items-center text-center flex-row justify-center text-white">
+              <button
+                className="flex items-end pl-[980px] right-0 justify-end text-end text-3xl text-white"
+                onClick={closeModal}
+              >
+                ✕
+              </button>
+              <h1 className="text-3xl font-bold pb-8 text-center ">
+                {title} <span className="font-normal">({year})</span>
+              </h1>
+              <div className="flex-col columns-2">
+                <img src={poster} alt={title} className="rounded-lg" />
+                <p className="text-md pt-2">{fullplot}</p>
+                <div className="flex flex-col m-2 p-4 ">
+                  <div className="flex flex-row space-x-12 justify-center text-start items-start">
+                    <p className="pt-4 text-sm">
+                      Metacritic Score:{" "}
+                      <span className="font-bold text-md">{metacritic}</span>
+                    </p>
+                    <p className="pt-4 text-sm">
+                      IMDB Rating:{" "}
+                      <span className="font-bold text-md">{imdb.rating}</span>
+                    </p>
+                  </div>
+                  <div className="flex flex-row space-x-12 justify-center text-start items-start">
+                    <p className="pt-4 text-sm">
+                      Genre:{" "}
+                      <span className="font-bold text-md">{genres[0]}</span>
+                    </p>
+                    <p className="pt-4 text-sm">
+                      Runtime:{" "}
+                      <span className="font-bold text-md">
+                        {runtime} <span className="font-normal">minutes</span>
+                      </span>
+                    </p>
+                  </div>
+                  <div className="flex flex-row space-x-12 justify-center text-start items-start">
+                    <p className="pt-4 text-sm">
+                      Director:{" "}
+                      <span className="font-bold text-md">{directors}</span>
+                    </p>
+                    <p className="pt-4 text-sm">
+                      Language:{" "}
+                      <span className="font-bold text-md">{languages[0]}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
     </div>
@@ -63,10 +161,11 @@ const Movies = () => {
         <h1 className="text-3xl pb-8 text font-bold text-gray-100 items-center justify-center text-center hover:text-white transition-all duration-300 ease-in-out">
           All Movies
         </h1>
-
-        {data.map((movie) => (
-          <Movie key={movie.title} movie={movie} />
-        ))}
+        <div className="flex flex-col items-center justify-center">
+          {data.map((movie) => (
+            <Movie key={movie.title} movie={movie} />
+          ))}
+        </div>
         <Footer />
       </div>
     </>

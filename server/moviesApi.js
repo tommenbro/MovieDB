@@ -10,15 +10,33 @@ export function MoviesApi(mongoDatabase) {
       .sort({
         metacritic: -1,
       })
-      .map(({ title, year, plot, genre, poster, metacritic, fullplot }) => ({
-        title,
-        year,
-        plot,
-        genre,
-        poster,
-        metacritic,
-        fullplot,
-      }))
+      .map(
+        ({
+          title,
+          year,
+          plot,
+          genres,
+          poster,
+          metacritic,
+          fullplot,
+          runtime,
+          imdb,
+          directors,
+          languages,
+        }) => ({
+          title,
+          year,
+          plot,
+          genres,
+          poster,
+          metacritic,
+          fullplot,
+          runtime,
+          imdb,
+          directors,
+          languages,
+        })
+      )
       .limit(100)
       .toArray();
     res.json(movies);
