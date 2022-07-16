@@ -2,40 +2,31 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Loading from "../components/Loading";
+import { useLoading } from "../components/UseLoading";
+import { fetchJSON } from "../components/FetchJSON";
 
-function useLoading(loadingFn) {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
+<fetchJSON />;
 
-  async function load() {
-    try {
-      setLoading(true);
-      setData(await loadingFn());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    load();
-  }, []);
-
-  return {
-    loading,
-    error,
-    data,
-  };
-}
-
-async function fetchJSON(url) {
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Network error: ${res.status}: ${res.statusText}`);
-  }
-  return await res.json();
+function Movie({
+  movie: { title, year, plot, genre, poster, metacritic, fullplot },
+}) {
+  return (
+    <div className="flex justify-center">
+      <div className="">
+        <div className="bg-gray-700 w-[540px] p-4 px-32 m-4 rounded-2xl text-center">
+          <h1 className="text-2xl font-bold pb-4">
+            {title} <span className="font-normal">({year})</span>
+          </h1>
+          <img src={poster} alt={title} className="rounded-lg" />
+          <p className="text-md pt-2">{plot}</p>
+          <p className="pt-4 text-sm">
+            Metacritic Score:{" "}
+            <span className="font-bold text-md">{metacritic}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const Movies = () => {
@@ -65,18 +56,17 @@ const Movies = () => {
   }
   return (
     <>
-      <div className="bg-gray-900 w-full h-screen text-white">
+      <div className="bg-gray-900 w-full h-full text-white">
         <h1 className="text-5xl text font-bold text-gray-100 items-center justify-start text-start pt-2 hover:text-white transition-all duration-300 ease-in-out pl-4">
           <Link to={"/"}>←</Link>
         </h1>
-        <h1 className="text-3xl text font-bold text-gray-100 items-center justify-center text-center hover:text-white transition-all duration-300 ease-in-out">
+        <h1 className="text-3xl pb-8 text font-bold text-gray-100 items-center justify-center text-center hover:text-white transition-all duration-300 ease-in-out">
           All Movies
         </h1>
-        <ul>
-          {data.map((movie) => (
-            <li key={movie.title}>{movie.title}</li>
-          ))}
-        </ul>
+
+        {data.map((movie) => (
+          <Movie key={movie.title} movie={movie} />
+        ))}
         <Footer />
       </div>
     </>
