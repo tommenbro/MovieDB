@@ -1,25 +1,32 @@
 import { Router } from "express";
 
-export function MoviesApi() {
+export function MoviesApi(mongoDatabase) {
   const router = new Router();
 
-  router.get("/", (req, res) => {
-    res.json([
-      {
-        title: "The Shawshank Redemption",
-        year: 1994,
-        rating: 9.2,
-        plot: "Two imprisoned mice in a small prison",
-      },
-      {
-        title: "The Godfather",
-        year: 1972,
-        rating: 9.2,
-        plot: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-      },
-    ]);
+  router.get("/", async (req, res) => {
+    const movies = await mongoDatabase
+      .collection("movies")
+      .find()
+      .sort({
+        metacritic: -1,
+      })
+      .map(({ title, year, plot, genre, poster, metacritic, fullplot }) => ({
+        title,
+        year,
+        plot,
+        genre,
+        poster,
+        metacritic,
+        fullplot,
+      }))
+      .limit(100)
+      .toArray();
+    res.json(movies);
   });
+
   router.post("/new", (req, res) => {
+    const { title } = req.body;
+    const result = mongoDatabase.collection("movies").insertOne({ title });
     res.sendStatus(500);
   });
 

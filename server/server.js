@@ -1,10 +1,21 @@
-import express, { Router } from "express";
+import express from "express";
 import * as path from "path";
 import { MoviesApi } from "./moviesApi.js";
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
-app.use("/api/movies", MoviesApi());
+const mongoClient = new MongoClient(process.env.MONGODB_URL);
+mongoClient.connect().then(async () => {
+  console.log("Connected to mongodb");
+  app.use(
+    "/api/movies",
+    MoviesApi(mongoClient.db(process.env.MONGODB_DATABASE || "sample_mflix"))
+  );
+});
 
 app.use(express.static("../client/dist/"));
 
