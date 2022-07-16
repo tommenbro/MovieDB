@@ -155,10 +155,10 @@ const Movies = () => {
   return (
     <>
       <div className="bg-gray-900 w-full h-full text-white">
-        <h1 className="text-5xl text font-bold text-gray-100 items-center justify-start text-start pt-2 hover:text-white transition-all duration-300 ease-in-out pl-4">
+        <h1 className="text-5xl text font-bold text-gray-100 fixed items-center justify-start text-start pt-2 hover:text-white transition-all duration-300 ease-in-out pl-4">
           <Link to={"/"}>←</Link>
         </h1>
-        <h1 className="text-3xl pb-8 text font-bold text-gray-100 items-center justify-center text-center hover:text-white transition-all duration-300 ease-in-out">
+        <h1 className="text-3xl pb-8 pt-4 text font-bold text-gray-100 items-center justify-center text-center hover:text-white transition-all duration-300 ease-in-out">
           All Movies
         </h1>
         <div className="flex flex-col items-center justify-center">
