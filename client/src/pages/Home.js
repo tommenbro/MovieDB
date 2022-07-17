@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 export function Home() {
   return (
-    <div className="bg-gray-900 bg w-full h-screen relative overflow-x-hidden">
+    <div className="bg-gray-900 bg w-full h-screen relative overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400 hover:scrollbar-thumb-gray-600">
       <img
         src={require("../assets/film_projector.gif")}
         className="bg-cover w-full h-full absolute opacity-60 blur-sm scale-[102%] "
@@ -19,7 +19,7 @@ export function Home() {
               to={"/movies"}
               className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out"
             >
-              All Movies
+              All Films
             </Link>
           </li>
           <li>
@@ -27,7 +27,7 @@ export function Home() {
               to={"/movies/new"}
               className="text-gray-300 text-lg font-medium hover:text-white transition-all duration-200 ease-in-out"
             >
-              Add Movie
+              Add Film
             </Link>
           </li>
           <li>

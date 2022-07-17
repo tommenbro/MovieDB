@@ -50,7 +50,7 @@ function Movie({
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400 overflow-visible">
       <div className="flex flex-col">
         <div className="bg-gray-700 w-[540px] p-4 px-32 m-4 rounded-2xl text-center">
           <button onClick={openModal}>
@@ -71,7 +71,7 @@ function Movie({
             contentLabel={"Movie Card Modal"}
             preventScroll={true}
           >
-            <div className="bg-gray-700 w-full p-4 px-32  rounded-2xl items-center text-center flex-row justify-center text-white">
+            <div className="bg-gray-700 w-full p-4 px-32  rounded-2xl items-center text-center flex-row justify-center text-white scrollbar-thin overflow:hidden">
               <button
                 className="flex items-end pl-[980px] right-0 justify-end text-end text-3xl text-white"
                 onClick={closeModal}
@@ -142,7 +142,7 @@ const Movies = () => {
   if (error) {
     return (
       <>
-        <div className="bg-gray-900 w-full h-screen text-white p-4">
+        <div className="bg-gray-900 w-full h-screen text-white p-4 scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400 overflow-scroll">
           <h1 className="text-5xl font-bold">Error</h1>{" "}
           <div className="text-xl text-yellow-500 bg-pink-800 border-red-500 border-2 p-1 mt-2">
             {error.toString()}
@@ -154,7 +154,7 @@ const Movies = () => {
   }
   return (
     <>
-      <div className="bg-gray-900 w-full h-full text-white">
+      <div className="bg-gray-900 w-full h-full text-white scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400">
         <h1 className="text-5xl text font-bold text-gray-100 fixed items-center justify-start text-start pt-2 hover:text-white transition-all duration-300 ease-in-out pl-4">
           <Link to={"/"}>←</Link>
         </h1>
