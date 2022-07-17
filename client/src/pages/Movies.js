@@ -51,9 +51,12 @@ function Movie({
 
   return (
     <div className="flex justify-center scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-gray-400 overflow-visible">
-      <div className="flex flex-col">
-        <div className="bg-gray-700 w-[540px] p-4 px-32 m-4 rounded-2xl text-center">
-          <button onClick={openModal}>
+      <div className="flex flex-col ">
+        <div className="bg-gray-700 w-[540px] p-4 px-32 m-4 rounded-2xl text-center shadow-lg shadow-black/40 ">
+          <button
+            className=" w-[full] h-full -mx-6  justify-center "
+            onClick={openModal}
+          >
             <h1 className="text-2xl font-bold pb-4">
               {title} <span className="font-normal">({year})</span>
             </h1>
